@@ -1,0 +1,196 @@
+
+
+
+
+<!DOCTYPE html>
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms no-csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en-us" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Beloved</title>
+        <meta name="description" content="Beloved Album">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="./code/style.css">
+        <script src="./code/modernizr-2.6.2.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script src="galleria/galleria-1.2.9.min.js"></script>
+    </head>
+    <body style="height: 100%">
+
+        <div id="container">
+            <div id="content" role="main">
+                <style>
+                    #galleria{ position: absolute; width: 100%; height: 100%; background: #000 }
+                    </style>
+                    <div id="galleria">
+                        <img src="IMG_2103.jpg">
+                        <img src="IMG_2214.jpg">
+                        <img src="IMG_2217.jpg">
+                        <img src="IMG_2238.jpg">
+                        <img src="IMG_2240.jpg">
+                        <img src="IMG_2242.jpg">
+                        <img src="IMG_2244.jpg">
+                        <img src="IMG_2267.jpg">
+                        <img src="IMG_2276.jpg">
+                        <img src="IMG_2281.jpg">
+                        <img src="IMAG0759.jpg">
+                        <img src="IMAG0764.jpg">
+                        <img src="IMAG0768.jpg">
+                        <img src="IMAG0769.jpg">
+                        <img src="IMAG0771.jpg">
+                        <img src="IMAG0778.jpg">
+                        <img src="IMAG0784.jpg">
+                        <img src="IMAG0789.jpg">
+                        <img src="IMAG0791.jpg">
+                        <img src="IMAG0793.jpg">
+                        <img src="IMAG0799.jpg">
+                        <img src="IMAG0800.jpg">
+                        <img src="IMAG0803.jpg">
+                        <img src="IMAG0805.jpg">
+                        <img src="IMAG0806.jpg">
+                        <img src="IMAG0807.jpg">
+                        <img src="IMAG0811.jpg">
+                        <img src="IMAG0813.jpg">
+                        <img src="IMAG0814.jpg">
+                        <img src="IMAG0816.jpg">
+                        <img src="IMG_2262.jpg">
+                        <img src="eyeball.jpg">
+                        <img src="IMG_4381.jpg">
+
+                    </div>
+                    <script>
+                        Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+                        Galleria.configure({
+                            thumbnails: false,
+                            showCounter: false
+                        });
+                        Galleria.run('#galleria');
+                </script>
+
+                <div>
+                    <div id="cwrap">
+                        <div id="nowPlay" class="is-audio">
+                            
+                            <div id="npTitle">DEEPER LOVE INTRO</div>
+                        </div>
+                        <div id="audiowrap">
+                            <div id="audio0">
+                                <audio id="audio1" controls="controls" src="./music/DEEPER LOVE INTRO.mp3">
+                                    Your browser does not support the HTML5 Audio Tag.
+                                </audio>
+                            </div>
+                            <noscript>Your browser does not support JavaScript or JavaScript has been disabled. You will need to enable JavaScript for this page.</noscript>
+                            <div id="extraControls" class="is-audio">
+                                <button id="btnPrev" class="ctrlbtn">|&lt;&lt;</button> <button id="btnNext" class="ctrlbtn">&gt;&gt;|</button>
+                            </div>
+                        </div>
+                        <div id="plwrap" class="is-audio">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer></footer>
+        </div>
+        <script type="text/javascript" src="./code/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.8.0.min.js"><\/script>')</script>
+        <script type="text/javascript">
+            jQuery(function($) {
+                var supportsAudio = !!document.createElement('audio').canPlayType;
+                if(supportsAudio) {
+                    var index = 0,
+                    playing = false;
+                    mediaPath = './music/',
+                    extension = '',
+                    tracks = [
+                        {"track":1,"name":"Intro","length":"00:55","file":"DEEPER LOVE INTRO"},
+                        {"track":2,"name":"Beneath The World","length":"00:37","file":"BENEATH THE WORLD MM COMP"},
+                        {"track":3,"name":"Sky Man","length":"01:05","file":"SKY MAN MM5"},
+                        {"track":4,"name":"Turning To White","length":"00:40","file":"turning to white aug 2"},
+                        {"track":5,"name":"I Love You Too","length":"00:59","file":"I LOVE YOU TOO MM3"},
+                        {"name":"Too High","file":"TOO HIGH COMP"},
+                        {"name":"Joy and Pain","file":"JOY & PAIN MM4"},
+                        {"name":"Caravan Park","file":"CARAVAN PARK DOM MIX 1"},
+                        {"name":"Step Into The Light","file":"STEP INTO THE LIGHT MM COMP"},
+                        {"name":"Eyes Of Love","file":"EYES OF LOVE MM10"},
+                        {"name":"Deeper Love","file":"DEEPER LOVE DESK MIX 7.7.13"}
+                    ],
+                    trackCount = tracks.length,
+                    npAction = $('#npAction'),
+                    npTitle = $('#npTitle'),
+                    audio = $('#audio1').bind('play', function() {
+                        playing = true;
+                        npAction.text('Now Playing:');
+                    }).bind('pause', function() {
+                        playing = false;
+                        npAction.text('Paused:');
+                    }).bind('ended', function() {
+                        npAction.text('Paused:');
+                        if((index + 1) < trackCount) {
+                            index++;
+                            loadTrack(index);
+                            audio.play();
+                        } else {
+                            audio.pause();
+                            index = 0;
+                            loadTrack(index);
+                        }
+                    }).get(0),
+                    btnPrev = $('#btnPrev').click(function() {
+                        if((index - 1) > -1) {
+                            index--;
+                            loadTrack(index);
+                            if(playing) {
+                                audio.play();
+                            }
+                        } else {
+                            audio.pause();
+                            index = 0;
+                            loadTrack(index);
+                        }
+                    }),
+                    btnNext = $('#btnNext').click(function() {
+                        if((index + 1) < trackCount) {
+                            index++;
+                            loadTrack(index);
+                            if(playing) {
+                                audio.play();
+                            }
+                        } else {
+                            audio.pause();
+                            index = 0;
+                            loadTrack(index);
+                        }
+                    }),
+                    li = $('#plUL li').click(function() {
+                        var id = parseInt($(this).index());
+                        if(id !== index) {
+                            playTrack(id);
+                        }
+                    }),
+                    loadTrack = function(id) {
+                        $('.plSel').removeClass('plSel');
+                        $('#plUL li:eq(' + id + ')').addClass('plSel');
+                        npTitle.text(tracks[id].name);
+                        index = id;
+                        audio.src = mediaPath + tracks[id].file + extension;
+                    },
+                    playTrack = function(id) {
+                        loadTrack(id);
+                        audio.play();
+                    };
+                    
+                    extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
+
+                    loadTrack(index);
+                }
+
+                $('#useLegend').click(function(e) {
+                    e.preventDefault();
+                    $('#use').slideToggle(300, function() {
+                        $('#useSpanSpan').text(($('#use').css('display') == 'none' ? 'show' : 'hide'));
+                    });
+                });
+            });
+        </script>
+    
+
+</body></html>
